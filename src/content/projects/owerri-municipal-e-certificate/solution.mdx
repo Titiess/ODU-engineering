@@ -1,0 +1,21 @@
+## Approach
+
+The solution was designed around three core principles:
+
+1. **Citizen-first experience** — every interaction should be simpler than the paper-based equivalent
+2. **Administrative efficiency** — council staff should process more applications with less manual effort
+3. **Trust through verification** — every certificate must be independently verifiable
+
+## System Design
+
+The platform implements a complete workflow engine that manages the lifecycle of each certificate application from submission through verification. The system uses a state-machine model where applications transition through well-defined stages:
+
+**Application → Payment → Review → Approval → Generation → Verification**
+
+Each transition is logged, auditable, and triggers appropriate notifications to the citizen and administrative staff.
+
+## Key Design Decisions
+
+The architecture separates concerns clearly: the citizen-facing portal handles user experience and form management, the API layer handles business logic and state management, and the admin dashboard provides oversight and control.
+
+This separation ensures that changes to the citizen experience don't impact administrative tools, and vice versa.

@@ -1,0 +1,29 @@
+## Architecture Philosophy
+
+Every technology decision was evaluated against three criteria: **reliability** (will it work under real-world conditions?), **maintainability** (can a small team operate it long-term?), and **security** (does it protect citizen data?).
+
+## Why Next.js
+
+Next.js was selected as the foundation because it unifies the frontend and API layer into a single deployable unit. For a government platform, reducing operational complexity is a significant advantage. Server-side rendering also ensures that the public-facing pages are accessible and indexable.
+
+The trade-off is coupling to the Vercel ecosystem for optimal deployment. This was mitigated by keeping all business logic in framework-agnostic modules.
+
+## Why PostgreSQL
+
+The certificate application and administrative records require strong relational integrity and transactional (ACID) safety. A relational database ensures that payments, certificates, and citizen identities are strictly linked without data orphan risks, satisfying government audit requirements.
+
+The trade-off is more rigid schema migrations. This is managed through structured migrations using Prisma ORM and strict TypeScript typing.
+
+## Why JWT Authentication
+
+Government platforms that may scale to serve multiple councils need stateless authentication. JWT tokens eliminate the need for shared session storage, simplifying horizontal scaling.
+
+Short-lived access tokens with refresh token rotation mitigate the inherent difficulty of JWT revocation.
+
+## Why Flutterwave
+
+Flutterwave provides the broadest coverage of African payment methods — bank transfers, cards, and mobile money. For a government platform serving diverse citizens, payment method accessibility is critical.
+
+## Why QR Verification
+
+A certificate's value is only as strong as its verifiability. QR codes provide instant, decentralised verification that works with any smartphone. The verification portal validates against the original database record, making forged certificates immediately detectable.

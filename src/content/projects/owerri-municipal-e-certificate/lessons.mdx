@@ -1,0 +1,25 @@
+## Reflections
+
+Building a government digital service taught lessons that apply to any production system, but with higher stakes.
+
+### Architecture Over Features
+
+The most important work on this project was not building features — it was designing the right architecture. The state-machine model for application processing, the separation of citizen and admin interfaces, and the webhook-based payment confirmation pattern were decisions made in the first weeks that influenced every subsequent piece of work.
+
+### Security Is a Foundation, Not a Feature
+
+Government systems handle sensitive citizen data. Security cannot be an afterthought or a sprint task. On this project, security-first decisions (encrypted storage, JWT rotation, role-based access) were established as architectural constraints before any feature work began.
+
+### The Value of Defensive Engineering
+
+In production, the edge cases dominate. What happens when a payment webhook arrives twice? What happens when a citizen uploads an invalid document format? What happens when the Chairman rejects an application that has already been paid for?
+
+Every one of these scenarios required specific handling. The discipline of anticipating and engineering for failure cases is what separates production software from prototypes.
+
+### Government Workflows Are Complex
+
+Digitising a government process is not simply moving a paper form online. It requires understanding approval hierarchies, audit requirements, exception handling, and the political dynamics of institutional change. The technology is often the simpler part of the problem.
+
+### User Experience Drives Adoption
+
+Citizens who had always visited a government office in person needed to trust a digital alternative. The platform's usability — clear progress indicators, immediate payment confirmation, accessible certificate downloads — directly influenced adoption rates.
