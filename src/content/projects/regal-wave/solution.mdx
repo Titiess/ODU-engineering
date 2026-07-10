@@ -1,0 +1,7 @@
+The implemented platform automates the ticketing process through a secured redirect booking layout and Express webhook middleware.
+
+### Automated Payment Matching
+Citizens configure VIP or regular tier quantities on a clean Tailwind interface and redirect to Flutterwave's secure payment checkout card. Once completed, the gateway sends a POST request callback to the Express server webhook. The server verifies the callback authenticity using custom HMAC-SHA256 signature verification before updating database records.
+
+### Dynamic PDF Compiler
+Once payment updates, the server calls the PDFKit compiler layout. The generator builds a styled ticket containing event specifics and a scan validation QR code, streaming the ticket container back to the user interface for immediate downloading.

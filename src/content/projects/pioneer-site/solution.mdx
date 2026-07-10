@@ -1,0 +1,10 @@
+The Pioneer Site addresses these challenges through a lightweight React architecture optimized for content delivery and form interactions.
+
+### Lightweight Client Routing
+Wouter replaces React Router as the client-side routing solution, providing the same hook-based API (`useRoute`, `Link`, `Router`) in a 1.5KB footprint. This keeps the production bundle lean while supporting clean URL transitions across all marketing pages.
+
+### Schema-Validated Application Form
+The membership application form uses React Hook Form for performant uncontrolled inputs with Zod schemas for type-safe validation. Fields are validated on blur events, providing immediate error feedback without triggering expensive re-renders on every keystroke.
+
+### Accessible FAQ Sections
+FAQ content is rendered through Radix UI Accordion primitives, which provide built-in ARIA attributes, keyboard arrow-key navigation, and proper focus management out of the box, ensuring the site meets accessibility standards.

@@ -23,6 +23,15 @@ export const metadata: ProjectMetadata = {
     "Vercel",
   ],
   categories: ["Government", "Full-Stack", "Security"],
+  projectCategory: "Flagship Case Study",
+  whatIBuilt: [
+    "Citizen-facing portal",
+    "Administrative dashboard",
+    "Flutterwave payment workflow",
+    "QR verification engine",
+    "Automated PDF certificate gen",
+    "Security auth system"
+  ],
   tags: [
     "govtech",
     "digital-transformation",
@@ -54,5 +63,9 @@ export const metadata: ProjectMetadata = {
       "QR verification",
       "Flutterwave payments",
     ],
+  },
+  author: {
+    name: "Otoabasi Udo",
+    title: "Platform Engineer",
   },
 };

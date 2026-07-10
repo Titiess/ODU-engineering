@@ -1,0 +1,7 @@
+The Vibe dashboard resolves these requirements using Next.js App Router route group layers, Zustand client state, and custom Recharts components.
+
+### Zustand Sandbox Wallet
+Rather than enforcing browser injections (like Metamask), the dashboard mounts a lightweight Zustand store. When the citizen triggers 'Connect', the hook generates a simulated hash address and populates a VIBE token balance. Users can interact with the faucet to mint simulated tokens, which reactively updates charts and tables in real-time.
+
+### Recharts Area Charts
+Analytics utilize Recharts components wrapped inside responsive CSS flex-grid structures. These graphs monitor token pools, transaction multipliers, and faucet logs dynamically, rendering clean area and line visualizers without dragging main-thread thread execution down.

@@ -6,18 +6,19 @@ import { FadeIn } from "@/components/animations/motion-primitives";
 
 interface LessonsSectionProps {
   lessons: string[];
+  title?: string;
 }
 
-export function LessonsSection({ lessons }: LessonsSectionProps) {
+export function LessonsSection({ lessons, title = "Key Takeaways" }: LessonsSectionProps) {
   return (
     <section id="lessons" className="relative px-6 py-20 border-t border-white/[0.04] scroll-mt-24">
       <div className="max-w-4xl mx-auto">
         <FadeIn>
-          <p className="text-xs font-medium text-cyan-400 uppercase tracking-wider mb-2">
-            Retrospective
+          <p className="text-xs font-medium text-emerald-400 uppercase tracking-wider mb-2">
+            Reflection
           </p>
           <h2 className="text-2xl font-semibold text-white tracking-tight mb-3">
-            Lessons Learned
+            {title}
           </h2>
           <p className="text-sm text-slate-400 max-w-2xl mb-12 leading-relaxed">
             Key takeaways from building this system — what worked, what I would

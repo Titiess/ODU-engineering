@@ -22,7 +22,11 @@ const tableOfContentsItems: TocItem[] = [
   { id: "roadmap", label: "Future Roadmap" },
 ];
 
-export function StickyTOC() {
+interface StickyTOCProps {
+  items?: TocItem[];
+}
+
+export function StickyTOC({ items = tableOfContentsItems }: StickyTOCProps) {
   const [activeId, setActiveId] = useState("");
 
   useEffect(() => {
@@ -43,13 +47,13 @@ export function StickyTOC() {
     const observer = new IntersectionObserver(handleIntersection, observerOptions);
 
     // Watch all matching element IDs
-    tableOfContentsItems.forEach((item) => {
+    items.forEach((item) => {
       const el = document.getElementById(item.id);
       if (el) observer.observe(el);
     });
 
     return () => observer.disconnect();
-  }, []);
+  }, [items]);
 
   const handleScrollTo = (id: string) => {
     const element = document.getElementById(id);
@@ -73,7 +77,7 @@ export function StickyTOC() {
       </div>
 
       <nav className="space-y-1 border-l border-white/[0.04] py-1">
-        {tableOfContentsItems.map((item) => {
+        {items.map((item) => {
           const isActive = activeId === item.id;
           return (
             <button

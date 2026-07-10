@@ -1,0 +1,10 @@
+The platform addresses these challenges through a layered frontend architecture that separates wallet connectivity, state management, and UI rendering.
+
+### Multi-Wallet Connection Flow
+The Solana wallet adapter standard is wrapped in a custom context provider that normalizes connection events across Phantom, Backpack, and Solflare. The wallet state is synchronized with Zustand to ensure consistent UI updates across all dashboard views.
+
+### Governance Dashboard
+Proposals are fetched server-side via Next.js server components and streamed to the client for immediate rendering. Users can filter proposals by status (active, resolved, expired), sort by deadline, and inspect detailed vote breakdowns with interactive progress bars.
+
+### Community Analytics
+Analytics widgets powered by Recharts display participation metrics, vote distribution patterns, and member activity trends, giving DAO leaders visibility into community engagement health.

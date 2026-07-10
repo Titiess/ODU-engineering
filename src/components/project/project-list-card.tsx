@@ -38,6 +38,11 @@ export function ProjectListCard({ project, index }: ProjectListCardProps) {
             <div className="flex-1 min-w-0">
               {/* Status + Meta */}
               <div className="flex flex-wrap items-center gap-2 mb-3">
+                {metadata.projectCategory && (
+                  <span className="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-mono font-medium tracking-tight bg-blue-500/10 text-blue-400 border border-blue-500/20">
+                    {metadata.projectCategory}
+                  </span>
+                )}
                 <span className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full text-[11px] font-medium bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
                   <span className="w-1 h-1 rounded-full bg-emerald-400" />
                   {metadata.status}

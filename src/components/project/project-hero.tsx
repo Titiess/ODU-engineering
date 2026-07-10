@@ -47,21 +47,20 @@ export function ProjectHero({ metadata, contentStats }: ProjectHeroProps) {
           transition={{ duration: 0.5, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
           className="flex flex-wrap items-center gap-3 mb-6"
         >
-          <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
-            <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+          {metadata.projectCategory && (
+            <span className="inline-flex items-center px-2.5 py-0.5 rounded text-[11px] font-mono font-medium tracking-tight bg-blue-500/10 text-blue-400 border border-blue-500/20">
+              {metadata.projectCategory}
+            </span>
+          )}
+          <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[11px] font-medium bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
+            <span className="w-1 h-1 rounded-full bg-emerald-400" />
             {metadata.status}
           </span>
           <span className="text-xs text-slate-500">{metadata.industry}</span>
-          <span className="text-xs text-slate-700">·</span>
-          <span className="inline-flex items-center gap-1 text-xs text-slate-500">
-            <Calendar className="w-3 h-3" />
-            {metadata.timeline}
-          </span>
-          <span className="text-xs text-slate-700">·</span>
+          <span className="text-xs text-slate-705">·</span>
           <span className="inline-flex items-center gap-1 text-xs text-slate-500">
             <Clock className="w-3 h-3" />
-            {contentStats.readingTime} min read ·{" "}
-            {contentStats.wordCount.toLocaleString()} words
+            {contentStats.readingTime} min read
           </span>
         </motion.div>
 
@@ -80,10 +79,45 @@ export function ProjectHero({ metadata, contentStats }: ProjectHeroProps) {
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
-          className="text-lg text-slate-400 leading-relaxed mb-8 max-w-3xl"
+          className="text-lg text-slate-400 leading-relaxed mb-6 max-w-3xl"
         >
           {metadata.tagline}
         </motion.p>
+
+        {/* Quick Facts Panel */}
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.35, ease: [0.16, 1, 0.3, 1] }}
+          className="glass-card rounded-xl p-5 mb-8 border border-white/[0.04] bg-slate-950/40"
+        >
+          <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-5 gap-6 text-xs text-slate-200">
+            {metadata.projectCategory && (
+              <div>
+                <span className="text-slate-550 block mb-1 font-mono uppercase tracking-wider text-[10px]">Project Type</span>
+                <span className="font-medium text-slate-300">{metadata.projectCategory}</span>
+              </div>
+            )}
+            <div>
+              <span className="text-slate-550 block mb-1 font-mono uppercase tracking-wider text-[10px]">Status</span>
+              <span className="font-medium text-slate-350">{metadata.status}</span>
+            </div>
+            <div>
+              <span className="text-slate-550 block mb-1 font-mono uppercase tracking-wider text-[10px]">My Role</span>
+              <span className="font-medium text-slate-300">{metadata.role}</span>
+            </div>
+            {metadata.client && (
+              <div>
+                <span className="text-slate-550 block mb-1 font-mono uppercase tracking-wider text-[10px]">Client</span>
+                <span className="font-medium text-slate-300">{metadata.client}</span>
+              </div>
+            )}
+            <div>
+              <span className="text-slate-550 block mb-1 font-mono uppercase tracking-wider text-[10px]">Timeline</span>
+              <span className="font-medium text-slate-300">{metadata.timeline}</span>
+            </div>
+          </div>
+        </motion.div>
 
         {/* Author + Links */}
         <motion.div
@@ -94,11 +128,11 @@ export function ProjectHero({ metadata, contentStats }: ProjectHeroProps) {
         >
           <div className="flex items-center gap-3">
             <div className="w-9 h-9 rounded-full bg-gradient-to-br from-blue-500 to-cyan-400 flex items-center justify-center text-xs font-bold text-white">
-              OD
+              {(metadata.author?.name || "OE").split(" ").map(w => w[0]).join("").slice(0, 2).toUpperCase()}
             </div>
             <div>
-              <p className="text-sm font-medium text-white">{metadata.role}</p>
-              <p className="text-xs text-slate-500">{metadata.client}</p>
+              <p className="text-sm font-medium text-white">{metadata.author?.name || "ODU Engineering"}</p>
+              <p className="text-xs text-slate-500">{metadata.author?.title || metadata.role}</p>
             </div>
           </div>
 
@@ -112,7 +146,7 @@ export function ProjectHero({ metadata, contentStats }: ProjectHeroProps) {
                 id="project-live-link"
               >
                 <ExternalLink className="w-3.5 h-3.5" />
-                Live Site
+                Live Demo
               </a>
             )}
             {metadata.links.github && (
@@ -124,7 +158,7 @@ export function ProjectHero({ metadata, contentStats }: ProjectHeroProps) {
                 id="project-github-link"
               >
                 <Github className="w-3.5 h-3.5" />
-                Source
+                Repository
               </a>
             )}
           </div>

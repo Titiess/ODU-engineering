@@ -61,6 +61,14 @@ export interface ArchitectureNode {
   id: string;
   label: string;
   type: "frontend" | "api" | "backend" | "database" | "service" | "external";
+  group?: string;
+  details?: string;
+}
+
+export interface ProjectAuthor {
+  name: string;
+  title: string;
+  avatar?: string;
 }
 
 export interface TechItem {
@@ -94,10 +102,14 @@ export interface ProjectMetadata {
   coverImage: string;
   featuredImage?: string;
   ogImage?: string;
+  projectCategory?: "Flagship Case Study" | "Client Project" | "Personal Project" | "Professional Collaboration" | "Experimental Project" | "Open Source";
+  whatIBuilt?: string[];
+  previewImages?: string[];
   relatedProjects?: string[];
   relatedArticles?: string[];
   links: ProjectLink;
   seo: ProjectSEO;
+  author?: ProjectAuthor;
   versionHistory?: VersionEntry[];
 }
 
