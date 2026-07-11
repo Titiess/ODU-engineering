@@ -1,13 +1,14 @@
-import type { Metadata } from "next";
+import { generateMetadata } from "@/lib/seo";
 import { Mail, MessageSquare } from "lucide-react";
 import { Github, Linkedin } from "@/components/ui/custom-icons";
 
-
-export const metadata: Metadata = {
+export const metadata = generateMetadata({
   title: "Contact",
   description:
-    "Get in touch for engineering collaborations, consulting inquiries, or technical discussions.",
-};
+    "Get in touch for engineering collaborations, consulting inquiries, or technical discussions. Connect with Otoabasi Daniel Udo (TiTi / Titiess).",
+  canonicalPath: "/contact",
+});
+
 
 const channels = [
   {

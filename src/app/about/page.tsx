@@ -1,11 +1,13 @@
-import type { Metadata } from "next";
+import { generateMetadata } from "@/lib/seo";
 import { Code2, BookOpen, Target, Wrench } from "lucide-react";
 
-export const metadata: Metadata = {
+export const metadata = generateMetadata({
   title: "About",
   description:
     "Engineering background, editorial focus, and the philosophy behind ODU Engineering.",
-};
+  canonicalPath: "/about",
+});
+
 
 const focusAreas = [
   {

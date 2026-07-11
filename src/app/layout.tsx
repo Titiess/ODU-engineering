@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { Navbar } from "@/components/layout/navbar";
 import { Footer } from "@/components/layout/footer";
+import { generateMetadata as getGlobalMetadata, getPersonSchema, getOrganizationSchema, getWebsiteSchema } from "@/lib/seo";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -14,31 +15,12 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-export const metadata: Metadata = {
-  title: {
-    default: "ODU Engineering — Production Systems Journal",
-    template: "%s | ODU Engineering",
-  },
-  description:
-    "Engineering publication platform documenting production software systems, architecture decisions, and technical leadership.",
-  keywords: [
-    "software engineering",
-    "case studies",
-    "system architecture",
-    "technical writing",
-    "full-stack development",
-  ],
-  icons: {
-    icon: [
-      { url: "/favicon.ico" },
-      { url: "/icon.png", type: "image/png", sizes: "32x32" },
-      { url: "/icon-192.png", type: "image/png", sizes: "192x192" },
-      { url: "/icon-512.png", type: "image/png", sizes: "512x512" },
-    ],
-    apple: "/apple-touch-icon.png",
-    shortcut: "/favicon.ico",
-  },
-  manifest: "/site.webmanifest",
+export const metadata: Metadata = getGlobalMetadata();
+
+export const viewport = {
+  themeColor: "#0B1220",
+  width: "device-width",
+  initialScale: 1,
 };
 
 export default function RootLayout({
@@ -51,6 +33,26 @@ export default function RootLayout({
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(getPersonSchema()),
+          }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(getOrganizationSchema()),
+          }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(getWebsiteSchema()),
+          }}
+        />
+      </head>
       <body className="min-h-full flex flex-col bg-[#030712] text-slate-50 noise-overlay">
         <Navbar />
         <main className="flex-1 pt-16">{children}</main>
@@ -59,3 +61,4 @@ export default function RootLayout({
     </html>
   );
 }
+

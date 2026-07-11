@@ -1,12 +1,14 @@
-import type { Metadata } from "next";
+import { generateMetadata } from "@/lib/seo";
 import { getProjects } from "@/lib/content";
 import { ProjectListCard } from "@/components/project/project-list-card";
 
-export const metadata: Metadata = {
-  title: "Engineering Projects",
+export const metadata = generateMetadata({
+  title: "Projects",
   description:
-    "A curated collection of production applications, client work, and experimental builds.",
-};
+    "A curated collection of production applications, client work, and engineering case studies built by Otoabasi Daniel Udo.",
+  canonicalPath: "/projects",
+});
+
 
 export default async function ProjectsPage() {
   const projects = await getProjects();

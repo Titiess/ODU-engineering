@@ -20,6 +20,7 @@ import { ProjectNavigation } from "@/components/project/project-navigation";
 import { SectionDivider } from "@/components/project/section-divider";
 import { ProjectPreview } from "@/components/project/project-preview";
 import { ProjectListCard } from "@/components/project/project-list-card";
+import { generateProjectMetadata, getProjectSchema } from "@/lib/seo";
 
 export async function generateStaticParams() {
   return getProjectSlugs().map((slug) => ({ slug }));
@@ -31,12 +32,7 @@ export async function generateMetadata(
   const { slug } = await props.params;
   try {
     const project = await getProject(slug);
-    const { seo } = project.data.metadata;
-    return {
-      title: seo.title,
-      description: seo.description,
-      keywords: seo.keywords,
-    };
+    return generateProjectMetadata(project.data.metadata);
   } catch {
     return { title: "Project Not Found" };
   }
@@ -115,6 +111,12 @@ export default async function ProjectPage(
 
   return (
     <article className="relative min-h-screen">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(getProjectSchema(metadata)),
+        }}
+      />
       {/* Scroll indicator overlay */}
       <ReadingProgress />
 

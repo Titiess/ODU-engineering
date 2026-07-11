@@ -4,6 +4,12 @@ import { EngineeringMetrics } from "@/components/marketing/engineering-metrics";
 import { PrinciplesSection } from "@/components/marketing/principles-section";
 import { TechAreasSection } from "@/components/marketing/tech-areas-section";
 import { getProjectData } from "@/lib/content/queries";
+import { generateMetadata } from "@/lib/seo";
+
+export const metadata = generateMetadata({
+  canonicalPath: "/",
+});
+
 
 export default async function HomePage() {
   // Retrieve the primary featured project data
